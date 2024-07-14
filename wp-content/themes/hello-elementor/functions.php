@@ -263,3 +263,18 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 		wp_body_open();
 	}
 }
+
+
+/**
+ * Function cusstom by w3s:
+ */
+
+//get data mini game
+function get_team_data()
+{
+
+	$json_file_path = get_template_directory() . '/includes/data_ladi_page.json';
+	$game_data = file_get_contents($json_file_path);
+	return json_decode($game_data, true);
+	wp_die();
+}

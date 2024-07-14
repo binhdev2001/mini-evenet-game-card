@@ -6,18 +6,9 @@ Template Name: Event Mini Game
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color: #ffdfd0;
-  --primary-color: #ed697c;
-  --secondary-color: #bbddc8;
-  --section-bg-color: #cfc8b4;
-  --custom-btn-bg-color: #bbddc8;
-  --custom-btn-bg-hover-color: #ed697c;
-  --dark-color: #1b2339;
-  --p-color: #717275;
-  --border-color: #7fffd4;
   --link-hover-color: #ed697c;
   --Primary-Active: #8f0e35;
-
+  --red-main-color: #4d0707;
   --body-font-family: "Josefin Sans", sans-serif;
   --title-font-family: "Cormorant Infanta", serif;
   --bold-title-font-family: "Cormorant Infanta", serif;
@@ -43,25 +34,11 @@ Template Name: Event Mini Game
   --font-weight-bold: 700;
 }
 @font-face {
-    font-family: 'Bovine MVB';
-    src: url('../fonts/fonnts.com-Bovine_MVB_Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Bovine MVB";
+  src: url("../fonts/fonnts.com-Bovine_MVB_Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
-html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-body {
-  background-color: var(--white-color);
-  font-family: var(--body-font-family);
-  background-image: url("../images/BG_body.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 /*---------------------------------------
   TYPOGRAPHY               
 -----------------------------------------*/
@@ -143,33 +120,45 @@ strong {
   font-family: var(--bold-title-font-family);
   font-weight: var(--font-weight-bold);
 }
-.wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: #f8f9fa; /* Màu nền của .wrapper (có thể tùy chỉnh) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
-/* Home page css  */
+
+.wrapper {
+  background-color: var(--white-color);
+  background-image: url("../images/BG_home.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden !important;
+}
+/* CSS Home Page */
 .logo {
-  margin-top: 40px;
+  padding: 2rem;
+  text-align: center;
 }
 .logo > img {
-  width: 100%;
+  width: 70px;
   height: 100px;
-  flex-shrink: 0;
 }
-.hero-banner {
-  margin: 0 auto;
+.hero-box {
+  margin-bottom: 70px;
+  gap: 50px;
 }
-.hero-banner__left,
-.hero-banner__right{
-  display:  flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.hero-banner__left h1,
+.hero-banner__left img,
+.hero-banner__left > .start-btn {
+  margin-bottom: -30px;
 }
-.hero-banner__left > h1{
-  color: var(--Primary-Active);
-  font-family: "Bovine MVB" ;
+
+.hero-banner__left > h1 {
+  margin-top: -15px;
+  color: var(--Primary-Active, #8f0e35);
+  text-align: center;
+  font-family: "Bovine MVB";
   font-size: 80px;
   font-style: normal;
   font-weight: 400;
@@ -178,46 +167,212 @@ strong {
   text-transform: uppercase;
 }
 .hero-banner__left > img {
-width: 563px;
-height: 425px;
-flex-shrink: 0;
+  width: 100%;
+  height: 425px;
+  flex-shrink: 0;
 }
-.start-btn{
-width: 276px;
-height: 72px;
-flex-shrink: 0;
-border: 1px solid var(--Primary-Active);
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-border-radius: 10px ;
-background: #FFF;
-color: #4D0707;
-text-align: center;
-font-family: "Bovine MVB";
-font-size: 30px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: 1.5px;
-text-transform: uppercase;
+.start-btn {
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  text-decoration: none !important;
+  outline: none !important;
+  border-radius: 10px;
+  border: 1px solid var(--Primary-Active);
+  box-shadow: 0 10px 0 var(--red-main-color);
+  background: #fff;
+  color: var(--Primary-Active);
+  text-align: center;
+  font-family: "Bovine MVB";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.start-btn:hover,
+.hero-banner__left > button:active {
+  top: 2px;
+  color: var(--Primary-Active);
+  border-radius: 10px !important;
+  border: 1px solid #4d0707 !important;
+  background: #ffdbdb !important;
 }
 
-/* CSS SITE FOOTER */
-.site-footer{
-  display: flex;
-  justify-content: center;
+.hero-banner__right > img {
+  width: 100%;
+  height: 425px;
+  flex-shrink: 0;
+}
+.hero-banner__right > button {
+  display: none;
+}
+/* css screen choose your team */
+.select-team__title {
+  color: var(--Primary-Active);
   text-align: center;
-  justify-items: center;
+  font-family: "Bovine MVB";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+.select_team__list-card {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  border-radius: 10px;
+  width: 18rem;
+  flex: 1;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0px 6px 2px 0px rgba(77, 7, 7, 0.3);
+  padding: 15px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.card-content{
+  flex-direction: column;
+
+}
+.card__cute-panda {
+  border: 4px solid #111b1c;
+  background: #fff9df;
+}
+.card__dream-car {
+  border: 4px solid #4d0707;
+  background: #ffe0dc;
+}
+.card__football {
+  border: 4px solid #1b1a22;
+  background: #d9eff1;
+}
+.card__luxury-lifestyle {
+  border: 4px solid #713d28;
+  background: #f8eae2;
+}
+.card__healthy-body {
+  border: 4px solid #fd8528;
+  background: #fff1cd;
+}
+.card-img-team {
+  width: 100%;
+}
+
+.card-title {
+  font-family: "Bovine MVB";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--Primary-Active);
+}
+
+.card-text {
+  text-align: center;
+}
+
+/* css footer */
+footer {
+  display: flex;
+  height: 50px;
+  justify-self: center;
+  align-items: center;
   background-color: var(--Primary-Active);
 }
-.coppy-right{
-color: #FFF;
-text-align: center;
-font-family: "Bovine MVB";
-font-size: 15px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: 0.75px;
-text-transform: uppercase;
-padding: 20px 20px;
+footer h4 {
+  margin: 0 auto;
+  padding-top: 20px;
+  color: #fff;
+  font-family: "Bovine MVB";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+/* Reponsive in tablet */
+@media (max-width: 980px) {
+  .hero-box {
+    height: 100vh !important;
+    flex-direction: column !important;
+    gap: 10px;
+  
+  }
+  .hero-banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+   
+  }
+
+  .hero-banner__left h1,
+  .hero-banner__left img,
+  .hero-banner__left > .start-btn {
+    margin-bottom: -15px;
+  }
+  .hero-banner__left > h1 {
+    font-size: 80px;
+    margin: 0 !important;
+  }
+  .hero-banner__left > img {
+    width: 80%;
+    height: 450px;
+  }
+  .hero-banner__right > img {
+    width: 80%;
+    height: 450px;
+  }
+  .hero-banner__left > button {
+    display: none;
+  }
+  .hero-banner__right > button {
+    display: block !important;
+    margin-top: 20px !important;
+  }
+}
+
+/* Reponsive in mobile */
+@media (max-width: 600px) {
+  .hero-box {
+    height: 100% !important;
+    flex-direction: column !important;
+    gap: 10px;
+  }
+  .hero-banner__left h1,
+  .hero-banner__left img,
+  .hero-banner__left > .start-btn {
+    margin-bottom: -15px;
+  }
+  .hero-banner__left > h1 {
+    font-size: 40px;
+    margin: 0 !important;
+  }
+  .hero-banner__left > button {
+    display: none;
+  }
+  .hero-banner__right > button {
+    display: block;
+    margin-top: 20px;
+  }
+  .hero-banner__left > img {
+    width: 301px;
+    height: 227px;
+  }
+  .hero-banner__right > img {
+    width: 301px;
+    height: 227px;
+  }
 }
