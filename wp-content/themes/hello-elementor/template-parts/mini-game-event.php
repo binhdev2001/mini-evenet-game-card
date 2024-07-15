@@ -23,9 +23,6 @@ Version: 1.0
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/assets/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
@@ -36,15 +33,17 @@ Version: 1.0
 <body>
     <div class="wrapper">
         <!-- section header -->
-        <section class="logo_container">
+        <section class="logo-container">
             <div class="container-fluid">
-                <div class="row ">
-                    <div class="logo">
-                        <img src=" <?php echo get_template_directory_uri(); ?>/assets/images/logo-nhonho.svg" alt="">
+                <div class="row pt-3">
+                    <div class="logo__box text-center">
+                        <img class="logo__left" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-nhonho.svg" alt="">
+                        <img class="logo_right d-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-quiz-game.svg" alt="">
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
@@ -63,7 +62,7 @@ Version: 1.0
                 </div>
             </div>
         </section>
-        <!-- Features Section -->
+        <!-- Seclect card Section -->
         <section id="select-team" class="features d-none">
             <div class="container">
                 <div class="row">
@@ -76,9 +75,9 @@ Version: 1.0
                         foreach ($team_data as $team) {
                     ?>
                             <div class="card card__<?php echo $team['className']; ?>">
-                                <div class="card-content d-flex ">
+                                <div class="card-content d-flex justify-content-center align-items-center">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo $team['imageSrc']; ?>" class="card-img-team" alt="...">
-                                    <a href="#" class="select-team-btn"><?php echo $team['teamName']; ?></a>
+                                    <a class="card__btn card__btn--<?php echo $team['className']; ?>" href="#"><?php echo $team['teamName']; ?></a>
                                 </div>
                             </div>
                     <?php
@@ -90,6 +89,23 @@ Version: 1.0
                 </div>
             </div>
         </section>
+        <!-- Q&A Section -->
+        <section id="qa-card" class="d-none">
+            <div class="qa-card__container">
+                <div class="row">
+                    <h1 class="qa-card__title">Team Name</h1>
+                    <div class="qa-card__content d-flex flex-row justify-content-between">
+                        <div class="qa-card__img-team">
+                            <img src="" alt="IMG by Team Name" class="qa-card__img">
+                        </div>
+                        <div class="qa-card__content-qa">
+                            Q&A content in here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
     <!-- Footer -->
     <footer class="footer text-center">
@@ -104,7 +120,57 @@ Version: 1.0
             $('.start-btn').click(function() {
                 $('.hero').fadeOut('slow');
                 $('#select-team').removeClass("d-none");
+                $('.logo_right').removeClass("d-none");
+                $('.logo__box').addClass("d-flex flex-row justify-content-between");
             });
+            // Get data name team and show q&a question
+            $('.card__btn').click(function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                var teamName = $(this).text();
+                console.log("Team Name:", teamName);
+
+                $.ajax({
+                    url: "<?php echo admin_url('admin-ajax.php') ?>", // `ajaxurl` should be defined in your WordPress theme
+                    type: 'POST',
+                    data: {
+                        action: 'get-data-q&a',
+                        team_name: teamName
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            var data = response.data;
+                            console.log("QA Content:", data['Q&A']);
+
+                            // Update the team name in the title
+                            $('#qa-card .qa-card__title').text(data.teamName);
+
+                            // Update the Q&A content
+                            var qaContent = "";
+                            data['Q&A'].forEach(function(qa) {
+                                qaContent += '<div class="qa-item">';
+                                qaContent += '<p>' + qa.content + '</p>';
+                                qaContent += '<p><strong>True:</strong> ' + qa.answers.true + '</p>';
+                                qaContent += '<p><strong>False:</strong> ' + qa.answers.false + '</p>';
+                                qaContent += '</div>';
+                            });
+                            $('#qa-card .qa-card__content-qa').html(qaContent);
+
+                            // Update the image
+                            var imgSrc = '<?php echo get_template_directory_uri(); ?>/assets/images/' + data.imageSrc;
+                            $('#qa-card .qa-card__img').attr('src', imgSrc);
+                            // Show the QA card section
+                            $('#select-team').addClass('d-none');
+                            $('#qa-card').removeClass('d-none');
+                        } else {
+                            console.log('Error:', response.data);
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+
         });
     </script>
 </body>

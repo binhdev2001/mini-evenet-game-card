@@ -1,0 +1,72 @@
+[
+  {
+    "teamName": "Cute Panda",
+    "className": "cute-panda",
+    "imageSrc": "cute-panda-team.png",
+    "Q&A": [
+      {
+        "content": "In the San Diego Zoo (California), the Zookeepers give Napa Valley wine to the panda in order to help them procreate",
+        "answers": {
+          "true": "The right answer is “FALSE”Of course, it’s FALSE… Come on, what were you thinking? You seem to have a lot to learn about wine. Why don’t you become a member of the Nho Nho community ?",
+          "false": "You are right, it’s FALSE. Quite obvious don’t you think? You seem to know a great deal about wines. Why don’t you become a member of the Nho Nho community?"
+        }
+      }
+    ]
+  },
+  {
+    "teamName": "Dream Car",
+    "className": "dream-car",
+    "imageSrc": "dream-card-team.png",
+    "Q&A": [
+      {
+        "content": "Angelo Gaja, an Italian winemaker delivers his wine with his Ferrari.",
+        "answers": {
+          "true": "That is true indeed, Mr Gaja found the best way to connect his 2 passions: cars and wines. Would you like to know more about wines? Why don’t you become a member of the Nho Nho community.",
+          "false": "That is actually “TRUE”. Imagine, you produce wine and own a Ferrari, it’s nothing but natural that you want to share it with the world. Would you like to know more about wines? Why don’t you become a member of the Nho Nho community."
+        }
+      }
+    ]
+  },
+  {
+    "teamName": "Football",
+    "className": "football",
+    "imageSrc": "football-team.png",
+    "Q&A": [
+      {
+        "content": "Each player of the French football team drank one bottle of Argentinian wine before the final of the 2022 World Cup.",
+        "answers": {
+          "true": "The right answer is “FALSE”. That could have explained why they messed up on the first half though. You seem to have a lot to learn about wine. Why don’t you become a member of the Nho Nho community.",
+          "false": "You are right, it’s FALSE. Even though they didn’t look great on the field… You seem to know a great deal about wines. Why don’t you become a member of the Nho Nho community."
+        }
+      }
+    ]
+  },
+  {
+    "teamName": "Luxury Lifestyle",
+    "className": "luxury-lifestyle",
+    "imageSrc": "life-luxury-team.png",
+    "Q&A": [
+      {
+        "content": "A 170 year-old Champagne Bottle was found under the sea in 2010. It was tasted by scientist and guess what? It was still good to drink.",
+        "answers": {
+          "true": "It is TRUE indeed! The bottle was found among 168 others in the cave of a shipwreck at the bottom of the cold Baltic sea. Protected from the sunlight and by the cold temperature of the sea, it was amazingly well-preserved, and kept the tasters amazed. You seem to know a great deal about wines. Why don’t you become a member of the Nho Nho community.",
+          "false": "As surprising as it might look like, it’s actually a TRUE story. The bottle was found among 168 others in the cave of a shipwreck at the bottom of the cold Baltic sea. Protected from the sunlight and by the cold temperature of the sea, it was amazingly well-preserved, and kept the tasters amazed. You seem to have a lot to learn about wine. Why don’t you become a member of the Nho Nho community."
+        }
+      }
+    ]
+  },
+  {
+    "teamName": "Healthy Body",
+    "className": "healthy-body",
+    "imageSrc": "healthy-body-team.png",
+    "Q&A": [
+      {
+        "content": "Moderate consumption of wine is actually good for health!",
+        "answers": {
+          "true": "It is TRUE indeed! Drinking wine helps promoting heart health and reducing the risk of certain diseases. Of course, you must keep it to a reasonable extent but I guess this news has made your day right. You seem to know a great deal about wines. Why don’t you become a member of the Nho Nho community.",
+          "false": "The right answer is “TRUE”, but I guess you have never been so happy to be wrong right? Drinking wine helps promoting heart health and reducing the risk of certain diseases. Of course, you must keep it to a reasonable extent but I guess this news has made your day right. You seem to have a lot to learn about wine. Why don’t you become a member of the Nho Nho community."
+        }
+      }
+    ]
+  }
+]

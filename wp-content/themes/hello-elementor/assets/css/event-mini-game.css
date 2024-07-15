@@ -136,16 +136,15 @@ body {
   overflow: hidden !important;
 }
 /* CSS Home Page */
-.logo {
-  padding: 2rem;
-  text-align: center;
+.logo__box {
+  padding: 0 60px;
 }
-.logo > img {
+.logo-left {
   width: 70px;
   height: 100px;
 }
 .hero-box {
-  margin-bottom: 70px;
+  margin: 50px 0;
   gap: 50px;
 }
 .hero-banner__left h1,
@@ -210,6 +209,14 @@ body {
   display: none;
 }
 /* css screen choose your team */
+#select-team, #qa-card{
+  min-height: 575px;
+  background-image: url("../images/bg-screen-select-team.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .select-team__title {
   color: var(--Primary-Active);
   text-align: center;
@@ -239,9 +246,12 @@ body {
   word-wrap: break-word;
   word-break: break-word;
 }
-.card-content{
+.select_team__list-card .card:hover {
+    transform: scale(1.05);
+}
+.card-content {
+  gap: 10px;
   flex-direction: column;
-
 }
 .card__cute-panda {
   border: 4px solid #111b1c;
@@ -281,7 +291,50 @@ body {
 .card-text {
   text-align: center;
 }
+.card__btn {
+  background: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none !important;
+  outline: none !important;
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Bovine MVB";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.card__btn--cute-panda {
+  border: 1px solid #215521;
+  box-shadow: 0 5px 0 #215521;
+  color: #215521;
+}
+.card__btn--dream-car {
+  border: 1px solid #9a1616;
+  box-shadow: 0 5px 0 #9a1616;
+  color: #9a1616;
+}
+.card__btn--football {
+  border: 1px solid #137ab9;
+  box-shadow: 0 5px 0 #137ab9;
+  color: #137ab9;
+}
+.card__btn--luxury-lifestyle {
+  border: 1px solid #3f2c1f;
+  box-shadow: 0 5px 0 #3f2c1f;
 
+  color: #3f2c1f;
+}
+.card__btn--healthy-body {
+  border: 1px solid #ff6506;
+  box-shadow: 0 5px 0 #ff6506;
+
+  color: #ff6506;
+}
 /* css footer */
 footer {
   display: flex;
@@ -308,14 +361,12 @@ footer h4 {
     height: 100vh !important;
     flex-direction: column !important;
     gap: 10px;
-  
   }
   .hero-banner {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-   
   }
 
   .hero-banner__left h1,
