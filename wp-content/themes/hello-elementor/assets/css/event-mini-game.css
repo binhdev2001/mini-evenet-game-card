@@ -5,6 +5,7 @@ Template Name: Event Mini Game
 /*---------------------------------------
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 :root {
   --link-hover-color: #ed697c;
   --Primary-Active: #8f0e35;
@@ -209,7 +210,8 @@ body {
   display: none;
 }
 /* css screen choose your team */
-#select-team, #qa-card{
+#select-team,
+#qa-card {
   min-height: 575px;
   background-image: url("../images/bg-screen-select-team.svg");
   background-position: bottom;
@@ -234,7 +236,8 @@ body {
   justify-content: space-around;
 }
 
-.card {
+.card,
+.qa-card__content {
   display: flex;
   border-radius: 10px;
   width: 18rem;
@@ -247,29 +250,34 @@ body {
   word-break: break-word;
 }
 .select_team__list-card .card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .card-content {
   gap: 10px;
   flex-direction: column;
 }
-.card__cute-panda {
+.card__cute-panda,
+.qa-card__content__cute-panda {
   border: 4px solid #111b1c;
   background: #fff9df;
 }
-.card__dream-car {
+.card__dream-car,
+.qa-card__content__dream-car {
   border: 4px solid #4d0707;
   background: #ffe0dc;
 }
-.card__football {
+.card__football,
+.qa-card__content__football {
   border: 4px solid #1b1a22;
   background: #d9eff1;
 }
-.card__luxury-lifestyle {
+.card__luxury-lifestyle,
+.qa-card__content__luxury-lifestyle {
   border: 4px solid #713d28;
   background: #f8eae2;
 }
-.card__healthy-body {
+.card__healthy-body,
+.qa-card__content__healthy-body {
   border: 4px solid #fd8528;
   background: #fff1cd;
 }
@@ -332,8 +340,126 @@ body {
 .card__btn--healthy-body {
   border: 1px solid #ff6506;
   box-shadow: 0 5px 0 #ff6506;
-
   color: #ff6506;
+}
+/* css screen true or false */
+.qa-card__container {
+  width: 70%;
+  margin: 0 auto;
+}
+.qa-card__img-team > img {
+  width: 295px;
+  height: 392;
+  flex-shrink: 0;
+}
+.qa-content-question {
+  color: #1f1f1f;
+  font-family: "Cormorant Infant", serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: normal;
+}
+.qa-card__content {
+  margin-bottom: 100px;
+  gap: 30px;
+}
+.qa-item {
+  position: relative;
+  height: 392px;
+}
+.qa-buttons,.end-game-btn {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  bottom: 5px;
+  left: 0;
+}
+.qa-btn {
+  width: 240px;
+  height: 71px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 25px;
+  background: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none !important;
+  outline: none !important;
+  border-radius: 10px;
+  flex-shrink: 0;
+  padding: 10px;
+  font-family: "Bovine MVB";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.qa-btn-true,.restart-btn {
+  color: #0f1c1b;
+  box-shadow: 0 5px 0 #0f1c1b;
+}
+.qa-btn-false,.home-btn{
+  color: #850800;
+  box-shadow: 0 5px 0 #850800;
+}
+.qa-card__title.cute-panda,
+.qa-card__title.dream-car,
+.qa-card__title.football,
+.qa-card__title.luxury-lifestyle,
+.qa-card__title.healthy-body {
+  text-align: center;
+  font-family: "Bovine MVB";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+.qa-card__title.cute-panda {
+  color: #215521;
+}
+.qa-card__title.dream-car {
+  color: #9a1616;
+}
+.qa-card__title.football {
+  color: #137ab9;
+}
+.qa-card__title.luxury-lifestyle {
+  color: #6f5240;
+}
+.qa-card__title.healthy-body {
+  color: #ff6506;
+}
+.highline-text {
+  font-family: "Cormorant Infant", serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.highline-text.true {
+  color: #2f7c5b;
+}
+.highline-text.false {
+  color: #d30d00;
+}
+.note-text {
+  color: #1f1f1f;
+  font-family: "Cormorant Infant";
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: normal;
+}
+.note-text a {
+  text-decoration: underline;
 }
 /* css footer */
 footer {

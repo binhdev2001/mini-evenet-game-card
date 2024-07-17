@@ -281,12 +281,6 @@ if (!function_exists('hello_elementor_body_open')) {
  */
 
 //get data mini game
-function my_enqueue_scripts()
-{
-	wp_enqueue_script('jquery'); // Đảm bảo rằng jQuery đã được tải
-	wp_localize_script('jquery', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
-}
-add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
 
 function get_team_data()
 {
@@ -296,12 +290,10 @@ function get_team_data()
 	return json_decode($game_data, true);
 	wp_die();
 }
-function get_data_qa()
+function get_content_by_team_name()
 {
-	// Kiểm tra nonce và quyền
 	if (isset($_POST['team_name'])) {
-		$team_name = sanitize_text_field($_POST['team_name']);
-
+		$team_name = $_POST['team_name'];
 		// Đường dẫn đến file JSON
 		$json_file = get_template_directory() . '/includes/data_event_mini_game.json';
 		if (file_exists($json_file)) {
@@ -326,5 +318,5 @@ function get_data_qa()
 	wp_die();
 }
 
-add_action('wp_ajax_get-data-q&a', 'get_data_qa');
-add_action('wp_ajax_nopriv_get-data_q&a', 'get_data_qa');
+add_action('wp_ajax_get_content_by_team_name', 'get_content_by_team_name');
+add_action('wp_ajax_nopriv_get_content_by_team_name', 'get_content_by_team_name');

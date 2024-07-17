@@ -91,15 +91,38 @@ Version: 1.0
         </section>
         <!-- Q&A Section -->
         <section id="qa-card" class="d-none">
-            <div class="qa-card__container">
+            <div class="container qa-card__container">
                 <div class="row">
-                    <h1 class="qa-card__title">Team Name</h1>
-                    <div class="qa-card__content d-flex flex-row justify-content-between">
+                    <h2 class="qa-card__title text-center"></h2>
+                    <div class="qa-card__content d-flex flex-row ">
                         <div class="qa-card__img-team">
-                            <img src="" alt="IMG by Team Name" class="qa-card__img">
+                            <img src="http://localhost/event-mini-game/wp-content/themes/hello-elementor/assets/images/dream-card-team.png" alt="IMG by Team Name" class="qa-card__img">
                         </div>
                         <div class="qa-card__content-qa">
-                            Q&A content in here
+                            <div class="qa-item">
+                                <p class="qa-content-question"></p>
+                                <div class="qa-buttons">
+                                    <button class="qa-btn qa-btn-true">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/True_Button.svg" alt="">
+                                        TRUE
+                                    </button>
+                                    <button class="qa-btn qa-btn-false">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/false.svg" alt="">
+                                        false
+                                    </button>
+                                </div>
+                                <div class="end-game-btn d-none">
+                                    <button class="qa-btn restart-btn">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/restart-btn.svg" alt="">
+                                        Restart
+                                    </button>
+                                    <button class="qa-btn home-btn ">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/home-icon.svg" alt="">
+                                        Home
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,34 +150,26 @@ Version: 1.0
             $('.card__btn').click(function(event) {
                 event.preventDefault(); // Prevent default link behavior
                 var teamName = $(this).text();
-                console.log("Team Name:", teamName);
-
+                sessionStorage.setItem('teamName', teamName);
                 $.ajax({
-                    url: "<?php echo admin_url('admin-ajax.php') ?>", // `ajaxurl` should be defined in your WordPress theme
+                    url: "<?php echo admin_url('admin-ajax.php') ?>",
                     type: 'POST',
                     data: {
-                        action: 'get-data-q&a',
+                        action: 'get_content_by_team_name',
                         team_name: teamName
                     },
                     success: function(response) {
                         if (response.success) {
                             var data = response.data;
-                            console.log("QA Content:", data['Q&A']);
-
                             // Update the team name in the title
-                            $('#qa-card .qa-card__title').text(data.teamName);
-
-                            // Update the Q&A content
-                            var qaContent = "";
-                            data['Q&A'].forEach(function(qa) {
-                                qaContent += '<div class="qa-item">';
-                                qaContent += '<p>' + qa.content + '</p>';
-                                qaContent += '<p><strong>True:</strong> ' + qa.answers.true + '</p>';
-                                qaContent += '<p><strong>False:</strong> ' + qa.answers.false + '</p>';
-                                qaContent += '</div>';
-                            });
-                            $('#qa-card .qa-card__content-qa').html(qaContent);
-
+                            $('.qa-card__title').text("Team " + data.teamName);
+                            $('.qa-card__title').addClass(data.className);
+                            $('.qa-card__title').addClass(data.className);
+                            $('.qa-card__content').addClass("qa-card__content__" + data.className);
+                            var qaContent = data['Q&A'].map(function(qa) {
+                                return `${qa.content}`;
+                            }).join('');
+                            $('.qa-content-question').text(qaContent);
                             // Update the image
                             var imgSrc = '<?php echo get_template_directory_uri(); ?>/assets/images/' + data.imageSrc;
                             $('#qa-card .qa-card__img').attr('src', imgSrc);
@@ -170,7 +185,82 @@ Version: 1.0
                     }
                 });
             });
+            // If true or false show answer
+            $('.qa-btn-true').click(function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                var storedTeamName = sessionStorage.getItem('teamName');
+                $.ajax({
+                    url: "<?php echo admin_url('admin-ajax.php') ?>",
+                    type: 'POST',
+                    data: {
+                        action: 'get_content_by_team_name',
+                        team_name: storedTeamName
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            var data = response.data;
+                            $('.qa-content-question').html(data['Q&A'][0].answers.true);
+                            $('.end-game-btn').removeClass('d-none');
+                            $('.qa-buttons').addClass('d-none');
+                            if ($('.qa-content-question').find('.highline-text.true').length > 0) {
 
+                                $('.restart-btn').hide();
+                            } else {
+                                $('.restart-btn').show();
+                            }
+                        } else {
+                            console.log('Error:', response.data);
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+
+            });
+            $('.qa-btn-false').click(function(event) {
+                event.preventDefault();
+                var storedTeamName = sessionStorage.getItem('teamName');
+                $.ajax({
+                    url: "<?php echo admin_url('admin-ajax.php') ?>",
+                    type: 'POST',
+                    data: {
+                        action: 'get_content_by_team_name',
+                        team_name: storedTeamName
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            var data = response.data;
+                            $('.qa-content-question').html(data['Q&A'][0].answers.false);
+                            $('.end-game-btn').removeClass('d-none');
+                            $('.qa-buttons').addClass('d-none');
+                            if ($('.qa-content-question').find('.highline-text.true').length > 0) {
+
+                                $('.restart-btn').hide();
+                            } else {
+                                $('.restart-btn').show();
+                            }
+                        } else {
+                            console.log('Error:', response.data);
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+
+            });
+            //end game button
+            $('.home-btn').on('click', function() {
+                var siteUrl = '<?php echo site_url(); ?>';
+                window.location.href = siteUrl;
+            });
+            $('.restart-btn').click(function() {
+                $('#select-team').removeClass("d-none").fadeIn('slow');
+                $('.end-game-btn').addClass('d-none');
+                $('.qa-buttons').removeClass('d-none');
+            });
+            //==========end code ==============
         });
     </script>
 </body>
