@@ -28,6 +28,11 @@ Version: 1.0
 
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap-icons.css" rel="stylesheet">
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/event-mini-game.css" rel="stylesheet">
+    <!-- css slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
 </head>
 
 <body>
@@ -68,7 +73,7 @@ Version: 1.0
                 <div class="row">
                     <h2 class="select-team__title">Choose your team to start</h2>
                 </div>
-                <div class="row select_team__list-card">
+                <div class="row select_team__list-card ">
                     <?php
                     $team_data = get_team_data();
                     if (is_array($team_data) && !empty($team_data)) {
@@ -94,7 +99,7 @@ Version: 1.0
             <div class="container qa-card__container">
                 <div class="row">
                     <h2 class="qa-card__title text-center"></h2>
-                    <div class="qa-card__content d-flex flex-row ">
+                    <div class="qa-card__content d-flex ">
                         <div class="qa-card__img-team">
                             <img src="http://localhost/event-mini-game/wp-content/themes/hello-elementor/assets/images/dream-card-team.png" alt="IMG by Team Name" class="qa-card__img">
                         </div>
@@ -133,11 +138,12 @@ Version: 1.0
     <!-- Footer -->
     <footer class="footer text-center">
         <h4>&copy; 2024 Your Company. All rights reserved.</p>
-
     </footer>
     <!-- JAVASCRIPT FILES -->
     <script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.start-btn').click(function() {
@@ -250,7 +256,7 @@ Version: 1.0
                 });
 
             });
-            //end game button
+            //====Show end button======
             $('.home-btn').on('click', function() {
                 var siteUrl = '<?php echo site_url(); ?>';
                 window.location.href = siteUrl;
@@ -260,7 +266,51 @@ Version: 1.0
                 $('.end-game-btn').addClass('d-none');
                 $('.qa-buttons').removeClass('d-none');
             });
-            //==========end code ==============
+
+
+        });
+    </script>
+    <!-- //code js create slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function checkScreenSize() {
+                if ($(window).width() < 1024) {
+                    $(".select_team__list-card").addClass("owl-carousel custom-carousel owl-theme");
+                    initializeOwlCarousel();
+                } else {
+                    $(".select_team__list-card").removeClass("owl-carousel custom-carousel owl-theme");
+                    destroyOwlCarousel();
+                }
+            }
+
+            function initializeOwlCarousel() {
+                if (!$(".select_team__list-card").hasClass("owl-loaded")) {
+                    $(".select_team__list-card").owlCarousel({
+                        autoWidth: true,
+                        loop: true,
+                        dots: false,
+                        nav: false,
+                        margin: 30,
+                        center: true
+                    });
+                }
+            }
+
+            function destroyOwlCarousel() {
+                if ($(".select_team__list-card").hasClass("owl-loaded")) {
+                    $(".select_team__list-card").trigger('destroy.owl.carousel');
+                }
+            }
+
+            // Initial check
+            checkScreenSize();
+
+            // Check on resize
+            $(window).resize(function() {
+                checkScreenSize();
+            });
         });
     </script>
 </body>

@@ -249,6 +249,9 @@ body {
   word-wrap: break-word;
   word-break: break-word;
 }
+.qa-card__content {
+  flex-direction: row;
+}
 .select_team__list-card .card:hover {
   transform: scale(1.05);
 }
@@ -367,7 +370,8 @@ body {
   position: relative;
   height: 392px;
 }
-.qa-buttons,.end-game-btn {
+.qa-buttons,
+.end-game-btn {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -400,11 +404,13 @@ body {
   text-transform: uppercase;
   transition: box-shadow 0.2s ease-in-out;
 }
-.qa-btn-true,.restart-btn {
+.qa-btn-true,
+.restart-btn {
   color: #0f1c1b;
   box-shadow: 0 5px 0 #0f1c1b;
 }
-.qa-btn-false,.home-btn{
+.qa-btn-false,
+.home-btn {
   color: #850800;
   box-shadow: 0 5px 0 #850800;
 }
@@ -519,6 +525,24 @@ footer h4 {
     display: block !important;
     margin-top: 20px !important;
   }
+  /* create slider when tablet */
+  .logo-container {
+    margin-top: 10px;
+  }
+  #select-team {
+    margin-top: 50px;
+    height: 80vh;
+  }
+  .qa-card__title.cute-panda,
+.qa-card__title.dream-car,
+.qa-card__title.football,
+.qa-card__title.luxury-lifestyle,
+.qa-card__title.healthy-body {
+    font-size: 30px;
+  }
+  .select_team__list-card {
+    margin-top: 50px;
+  }
 }
 
 /* Reponsive in mobile */
@@ -551,5 +575,63 @@ footer h4 {
   .hero-banner__right > img {
     width: 301px;
     height: 227px;
+  }
+  .card,
+  .qa-card__content {
+    width: 15rem;
+  }
+  .owl-carousel .owl-stage-outer {
+    padding-left: 0 !important;
+  }
+  .select_team__list-card .card {
+    margin-top: 20px;
+  }
+  .select-team__title {
+    font-size: 30px;
+  }
+  .logo__box {
+    padding: 0 20px;
+  }
+  .logo-left,
+  .logo-right {
+    width: 47px !important;
+    height: 81px !important;
+    flex-shrink: 0;
+  }
+
+  .qa-card__container {
+    width: 85%;
+
+  }
+  .qa-item {
+    position: relative;
+    height: fit-content;
+}
+   .qa-card__content{
+    text-align: center;
+    padding: 35px;
+   }
+  .qa-card__content{
+    flex-direction: column;
+  }
+  .qa-card__img-team > img {
+    width: 100%;
+    height: auto;
+  }
+  .qa-content-question {
+    text-align: left;
+  }
+  .qa-btn {
+    width: 200px;
+    height: 60px;
+  }
+  .qa-buttons,
+  .end-game-btn {
+    position: relative;
+    flex-direction: column;
+    left: 10%;
+  }
+  .qa-item {
+    min-height: fit-content;
   }
 }
