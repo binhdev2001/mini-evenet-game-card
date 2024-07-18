@@ -263,6 +263,7 @@ Version: 1.0
             });
             $('.restart-btn').click(function() {
                 $('#select-team').removeClass("d-none").fadeIn('slow');
+                $('#qa-card').addClass('d-none')
                 $('.end-game-btn').addClass('d-none');
                 $('.qa-buttons').removeClass('d-none');
             });

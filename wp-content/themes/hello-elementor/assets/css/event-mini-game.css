@@ -543,6 +543,17 @@ footer h4 {
   .select_team__list-card {
     margin-top: 50px;
   }
+  .qa-card__content {
+    flex-direction: column;
+}
+.qa-card__content {
+    text-align: center;
+    justify-content: center;
+}
+  .qa-buttons,
+  .end-game-btn {
+    left: 5%;
+  }
 }
 
 /* Reponsive in mobile */
